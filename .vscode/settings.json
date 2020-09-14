@@ -1,0 +1,29 @@
+{
+  "editor.fontSize": 16,
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "typescript.suggest.paths": false,
+  "path-intellisense.mappings": {
+    "@": "${workspaceRoot}/src",
+    "@hj": "${workspaceRoot}/node_modules/huijie-core-system/src"
+  },
+  "todo-tree.general.tags": ["TODO:", "FIXME:"],
+  "todo-tree.highlights.defaultHighlight": {
+    "gutterIcon": true,
+    "type": "text"
+  },
+  "todo-tree.highlights.customHighlight": {
+    "TODO:": {
+      "icon": "check",
+      "foreground": "#fff",
+      "background": "#ffbd2a",
+      "iconColour": "#ffbd2a"
+    },
+    "FIXME:": {
+      "foreground": "#fff",
+      "background": "#f06292",
+      "icon": "flame",
+      "iconColour": "#f06292"
+    }
+  }
+}

@@ -1,59 +1,91 @@
+/*
+ * @Description: 快手极速版 1.0
+ * @Author: Allen
+ * @Date: 2020-09-14 09:04:54
+ * @LastEditors: Allen
+ * @LastEditTime: 2020-09-21 15:07:35
+ */
+
 const height = device.height;
 const width = device.width;
 setScreenMetrics(width, height);
 let see_count = 1000;
-let count = 11;
+let count = 0;
 
-toast("启动");
+console.show();
 
-// console.show();
+log("开始运行脚本");
+log("准备打开快手极速版");
+launchApp("快手极速版");
+
+id("left_btn").waitFor();
+log("快手极速版已打开");
 
 handleWelfare();
-
-// hanldeMoney();
 
 //  福利任务
 function handleWelfare() {
   // 进去任务 页面
-  sleep(1000);
+  sleep(5000);
   id("left_btn").findOne().click();
+  log("打开菜单");
   sleep(500);
   click("去赚钱");
-  sleep(500);
-  sleep(1000);
-  while (textContains("福利").exists()) {
-    click("福利");
-    sleep(18000);
-    id("video_close_icon").waitFor();
-    id("video_close_icon").findOne().click();
-    sleep(1000);
-  }
+  log("点击去赚钱");
+  sleep(1500);
 
+  log("是否存在福利", textContains("福利").exists());
+  if (textContains("福利").exists()) {
+    while (textContains("福利").exists()) {
+      click("福利");
+      sleep(18000);
+      id("video_close_icon").waitFor();
+      id("video_close_icon").findOne().click();
+      sleep(1000);
+    }
+    sleep(1500);
+  } else {
+    log("福利已完成");
+  }
+  // 看直播
   liveVideos();
 }
 
 // 看直播领金币
 function liveVideos() {
   sleep(1000);
-  while (textContains("看直播").exists()) {
-    if (count >= 11) break;
-    sleep(1000);
-    click("看直播");
-    sleep(18000);
-    back();
-    sleep(500);
-    back();
-    sleep(2000);
-    count = count + 1; 
+
+  log("是否存在看直播", textContains("看直播").exists());
+  if (textContains("看直播").exists()) {
+    swipe(width / 2, height / 2 + 300, width / 2, 0, 700);
+    while (textContains("看直播").exists()) {
+      if (count >= 11) break;
+      sleep(1000);
+      click("看直播");
+      log("点击看直播");
+      sleep(1500);
+      for (let index = 1; index < 11; index++) {
+        sleep(18000);
+        swipe(width / 2, height / 2 + 300, width / 2, 0, 700);
+        log("进行第" + index + "个视频");
+      }
+      back();
+      sleep(500);
+      back();
+      sleep(2000);
+      count = 12;
+    }
+  } else {
+    log("看直播已完成");
   }
 
   back();
-  hanldeMoney();
+  handleMoney();
 }
 
-function hanldeMoney() {
+function handleMoney() {
   for (var i = 1; i < see_count; i++) {
-    toast("滑动" + i + "次" + "总计:" + see_count + "次");
+    log("滑动" + i + "次" + "总计:" + see_count + "次");
     randomUpSildeScreen();
     randomDownSildeScreen();
     slideScreenDown(width / 2, height / 2 + 300, width / 2, 0, 700);
@@ -67,8 +99,9 @@ function hanldeMoney() {
 function randomUpSildeScreen() {
   let randomIndex = random(1, 50);
   if (randomIndex == 1) {
+    log("随机上滑");
     pressTime = random(200, 500);
-    swipe(width / 2, 500, width / 2, height - 200, 300);
+    swipe(width / 2, 300, width / 2, height - 200, 700);
     delayTime = random(10000, 15000);
     sleep(delayTime);
   }
@@ -81,9 +114,10 @@ function randomUpSildeScreen() {
 function randomDownSildeScreen() {
   let randomIndex = random(1, 50);
   if (randomIndex == 1) {
-    swipe(width / 2, height - 400, width / 2, 500, 300);
+    log("连续下滑对上一个无兴趣");
+    swipe(width / 2, height / 2 + 300, width / 2, 0, 700);
     sleep(2000);
-    swipe(width / 2, height - 400, width / 2, 500, 300);
+    swipe(width / 2, height / 2 + 300, width / 2, 0, 700);
     delayTime = random(8000, 10000);
     sleep(delayTime);
   }

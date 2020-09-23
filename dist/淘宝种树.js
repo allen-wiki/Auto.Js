@@ -3,8 +3,13 @@
  * @Author: Allen
  * @Date: 2020-09-16 15:20:43
  * @LastEditors: Allen
- * @LastEditTime: 2020-09-21 15:51:45
+ * @LastEditTime: 2020-09-22 11:38:15
  */
+
+// 种树开始
+console.show();
+
+log("用户编号:", "0李强强", "1李强小号", "2付鹏飞", "3李若男");
 
 const height = device.height;
 const width = device.width;
@@ -12,7 +17,9 @@ setScreenMetrics(width, height);
 
 // 当前用户
 // 0李强强 1李强强小号
-const userNumber = 2;
+const userNumber = dialogs.input("请输入用户编号");
+
+log("当前用户编号", userNumber);
 
 // 用户信息
 const userList = [
@@ -36,18 +43,23 @@ const userList = [
     ],
   },
   {
-    // 李若男 2
+    // 付鹏飞 2
     clip: "-2.0付致内容 Http:/T￥9n9GcVtP8Dk￥到τa0寳【拜托帮我点一下吧～你也可以领免费水果！】",
     helping: [
       "3覆置本段内容 Http:/T￥6Sbtc4bvOFB￥da開绹..寶【拜托帮我点一下吧～你也可以领免费水果！】", // 李强强
-      "-9fu致本段内容 Http:/T￥hqDxcVuQgVD￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", // 付
+      "-9fu致本段内容 Http:/T￥hqDxcVuQgVD￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", // 程
       "3覆置本段内容 Http:/T￥6Sbtc4bvOFB￥da開绹..寶【拜托帮我点一下吧～你也可以领免费水果！】", // 李强强小号
     ],
   },
+  {
+    // 李若男3
+    clip: "-2.0付致内容 Http:/T￥9n9GcVtP8Dk￥到τa0寳【拜托帮我点一下吧～你也可以领免费水果！】",
+    helping: [
+      "7.0幅治内容 Http:/T￥fOdWcfJQM0E￥da開τao寶【拜托帮我点一下吧～你也可以领免费水果！】",
+      "8fu致本段内容 Http:/T￥QflscfJn8Zc￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】",
+    ],
+  },
 ];
-
-// 种树开始
-console.show();
 
 sleep(1000);
 
@@ -57,17 +69,13 @@ if (appRun != "com.taobao.taobao") {
   log("打开手机淘宝中");
   waitForActivity("com.taobao.tao.TBMainActivity");
   log("进入淘宝");
-  sleep(2000);
-  log("进入芭芭农场");
-  desc("芭芭农场").waitFor();
-  desc("芭芭农场").findOne().click();
-  sleep(3000);
 }
 
-sleep(500);
+sleep(1000);
 
 // 好友助力任务
 helpingHand();
+
 sleep(2000);
 
 // 判断是否在第一棵数

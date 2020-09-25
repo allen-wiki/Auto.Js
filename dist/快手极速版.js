@@ -1,32 +1,18 @@
-/*
- * @Description: 快手极速版 1.0
- * @Author: Allen
- * @Date: 2020-09-14 09:04:54
- * @LastEditors: Allen
- * @LastEditTime: 2020-09-21 15:07:35
- */
-
-const height = device.height;
-const width = device.width;
-setScreenMetrics(width, height);
-let see_count = 1000;
-let count = 0;
-
 console.show();
+var height = device.height;
+var width = device.width;
+setScreenMetrics(width, height);
 
-log("开始运行脚本");
-log("准备打开快手极速版");
-launchApp("快手极速版");
-
-id("left_btn").waitFor();
-log("快手极速版已打开");
-
+const count = 1000;
 handleWelfare();
+
+sleep(1000);
+handleMoney();
 
 //  福利任务
 function handleWelfare() {
   // 进去任务 页面
-  sleep(5000);
+  sleep(2000);
   id("left_btn").findOne().click();
   log("打开菜单");
   sleep(500);
@@ -34,58 +20,52 @@ function handleWelfare() {
   log("点击去赚钱");
   sleep(1500);
 
-  log("是否存在福利", textContains("福利").exists());
-  if (textContains("福利").exists()) {
-    while (textContains("福利").exists()) {
-      click("福利");
+  log("是否存在去领取", textContains("去领取").exists());
+  if (textContains("去领取").exists()) {
+    while (textContains("去领取").exists()) {
+      textContains("去领取").findOne().click();
       sleep(18000);
-      id("video_close_icon").waitFor();
+      // id("video_close_icon").findOne().waitFor();
       id("video_close_icon").findOne().click();
       sleep(1000);
     }
     sleep(1500);
   } else {
-    log("福利已完成");
+    log("去领取已完成");
   }
-  // 看直播
-  liveVideos();
-}
 
-// 看直播领金币
-function liveVideos() {
-  sleep(1000);
+  if (textContains("观看16秒得100金币").exists()) {
+    const text1 = textContains("观看16秒得100金币").findOne().text();
+    const count = 10 - Number(text1.substr(-4, 1));
+    log("观看次数", count);
+    if (count > 0) {
+      className("android.widget.Button")
+        .depth(3)
+        .text("看直播")
+        .untilFind()
+        .forEach((element) => {
+          if (element.indexInParent() == 36) {
+            element.click();
+          }
+        });
 
-  log("是否存在看直播", textContains("看直播").exists());
-  if (textContains("看直播").exists()) {
-    swipe(width / 2, height / 2 + 300, width / 2, 0, 700);
-    while (textContains("看直播").exists()) {
-      if (count >= 11) break;
-      sleep(1000);
-      click("看直播");
-      log("点击看直播");
-      sleep(1500);
-      for (let index = 1; index < 11; index++) {
+      for (let index = 1; index <= count; index++) {
+        log("进行第", index);
         sleep(18000);
-        swipe(width / 2, height / 2 + 300, width / 2, 0, 700);
-        log("进行第" + index + "个视频");
+        swipe(width / 2, height - 200, width / 2, 0, 700);
       }
-      back();
-      sleep(500);
-      back();
-      sleep(2000);
-      count = 12;
     }
   } else {
-    log("看直播已完成");
+    log("已完成");
   }
-
   back();
-  handleMoney();
+  sleep(800);
+  back();
 }
 
 function handleMoney() {
-  for (var i = 1; i < see_count; i++) {
-    log("滑动" + i + "次" + "总计:" + see_count + "次");
+  for (var i = 1; i < count; i++) {
+    log("滑动" + i + "次" + "总计:" + count + "次");
     randomUpSildeScreen();
     randomDownSildeScreen();
     slideScreenDown(width / 2, height / 2 + 300, width / 2, 0, 700);
@@ -137,13 +117,21 @@ function slideScreenDown(startX, startY, endX, endY, pressTime) {
     swipe(width / 2, height / 2 + 300, width / 2, 0, 700);
   }
 
+  log("点击打开长图", textContains("点击打开长图").exists());
   if (textContains("点击打开长图").exists()) {
     sleep(200);
-    swipe(width / 2, height / 2 + 300, width / 2, 0, 700);
+    swipe(width / 2, height - 300, width / 2, 0, 700);
   }
+
+  log("点击打开图集", textContains("点击打开图集").exists());
+  if (textContains("点击打开图集").exists()) {
+    sleep(200);
+    swipe(width / 2, height - 300, width / 2, 0, 700);
+  }
+
   if (textContains("点击进入直播间").exists()) {
     sleep(200);
-    swipe(width / 2, height / 2 + 300, width / 2, 0, 700);
+    swipe(width / 2, height - 300, width / 2, 0, 700);
   }
 
   let delayTime = random(8000, 12000);

@@ -3,7 +3,7 @@
  * @Author: Allen
  * @Date: 2020-09-14 09:04:54
  * @LastEditors: Allen
- * @LastEditTime: 2020-09-23 16:39:49
+ * @LastEditTime: 2020-09-24 11:44:05
  */
 
 console.show();
@@ -73,6 +73,9 @@ function handleStart() {
       log("刷宝短视频未打开");
       launchApp("刷宝短视频");
       textContains("首页").waitFor();
+      randomUpSildeScreen();
+      randomDownSildeScreen();
+      slideScreenDown(width / 2, height / 2 + 300, width / 2, 0, 700);
     } else if (Format(new Date(), "hh:mm") == dateArr[count]) {
       log("进行第" + count + "次任务");
       handleTaskVideo();
@@ -175,7 +178,7 @@ function handleTaskVideo() {
     textContains("开箱领元宝").findOne().parent().click();
     log("进行开箱领元宝任务");
     // 不执行
-    sleep(1000);
+    sleep(3000);
     const clickStatus = click("额外领取188元宝");
     if (!clickStatus) {
       click("额外领取88元宝");

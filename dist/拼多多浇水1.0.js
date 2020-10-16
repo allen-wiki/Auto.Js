@@ -3,7 +3,7 @@
  * @Author: Allen
  * @Date: 2020-09-16 16:57:39
  * @LastEditors: Allen
- * @LastEditTime: 2020-09-17 14:25:23
+ * @LastEditTime: 2020-09-28 16:02:03
  */
 
 console.show();
@@ -40,7 +40,7 @@ for (let index = 1; index <= count2; index++) {
 
 function handleGetCount() {
   className("android.view.View")
-    .depth(16)
+    .depth(11)
     .untilFind()
     .forEach((element) => {
       const text = element.text();

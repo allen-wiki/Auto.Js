@@ -3,7 +3,7 @@
  * @Author: Allen
  * @Date: 2020-09-23 10:56:53
  * @LastEditors: Allen
- * @LastEditTime: 2020-09-23 13:23:09
+ * @LastEditTime: 2020-10-12 10:12:41
  */
 console.show();
 
@@ -46,19 +46,19 @@ function handleGold() {
     listWrap.push(element.parent());
   });
 
-  if (listWrap.length <= 3) {
+  log("length" + listWrap.length);
+  if (listWrap.length <= 1) {
     log("任务已完成");
-
-    home();
     goldStatus = false;
+    home();
+    return void 0;
   }
-  log("length", listWrap.length);
   while (taskStatus) {
     if (count >= listWrap.length) {
       taskStatus = false;
       break;
     }
-    log("count", count);
+    log("count" + count);
     task(listWrap, count);
     count = count + 1;
     sleep(1000);
@@ -112,27 +112,32 @@ function swipe15s() {
 // 好友助力
 function handleHelpingHand() {
   className("android.widget.ListView")
-    .depth(13)
+    .depth(9)
     .untilFind()
     .forEach((item) => {
       if (item.indexInParent() == 1) {
         log("进行帮好友");
         // 帮好友
         sleep(500);
-        const ch3 = item.findOne(className("android.view.View").depth(14));
+        const ch3 = item.findOne(className("android.view.View").depth(10));
         click(ch3.bounds().centerX(), ch3.bounds().centerY());
         sleep(2000);
       }
     });
-  log(textContains("去助力").exists());
-  while (textContains("去助力").exists()) {
-    textContains("去助力").findOne().click();
-    textContains("立即助力").waitFor();
-    className("android.widget.Button").text("立即助力").click();
-    sleep(3000);
-    back();
-    sleep(1000);
-  }
+  className("android.widget.Button")
+    .depth(8)
+    .untilFind()
+    .forEach((item) => {
+      const textValue = item.text();
+      if (textValue == "去助力") {
+        item.click();
+        textContains("立即助力").waitFor();
+        className("android.widget.Button").text("立即助力").click();
+        sleep(3000);
+        back();
+        sleep(1000);
+      }
+    });
 
   log("帮好友任务完成");
   back();
@@ -142,12 +147,12 @@ function handleHelpingHand() {
 function handleGoShop() {
   log("进入逛店铺");
   className("android.widget.ListView")
-    .depth(13)
+    .depth(9)
     .untilFind()
     .forEach((item) => {
       // 逛店铺
       if (item.indexInParent() == 0) {
-        const ch2 = item.findOne(className("android.view.View").depth(14));
+        const ch2 = item.findOne(className("android.view.View").depth(10));
         click(ch2.bounds().centerX(), ch2.bounds().centerY());
       }
     });
@@ -161,7 +166,7 @@ function handleGoShop() {
     log("逛10秒", desc("逛10秒+10").exists());
     desc("逛10秒+10").findOne().parent().click();
     swipe15s();
-    sleep(2000);
+    sleep(1000);
   }
   log("逛店铺任务完成");
   back();

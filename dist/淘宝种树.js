@@ -3,7 +3,7 @@
  * @Author: Allen
  * @Date: 2020-09-16 15:20:43
  * @LastEditors: Allen
- * @LastEditTime: 2020-09-24 17:04:33
+ * @LastEditTime: 2020-10-13 16:21:45
  */
 
 // 种树开始
@@ -30,16 +30,16 @@ const userList = [
     helping: [
       "-9fu致本段内容 Http:/T￥hqDxcVuQgVD￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", // 程
       "-2.0付致内容 Http:/T￥9n9GcVtP8Dk￥到τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", // 付
-      "1fu置内容 Http:/T￥FCA0ceHHqdZ￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", // 李小号
+      "0.0fu置文本 Http:/T￥N632chotXFg￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", // 李小号
     ],
   },
   {
     // 李强强小号 1
-    clip: "1fu置内容 Http:/T￥FCA0ceHHqdZ￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】",
+    clip: "1fu置文本 Http:/T￥Di3cchoIAWr￥打開氵匋寳【拜托帮我点一下吧～你也可以领免费水果！】",
     helping: [
       "-9fu致本段内容 Http:/T￥hqDxcVuQgVD￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", // 程
       "-2.0付致内容 Http:/T￥9n9GcVtP8Dk￥到τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", // 付
-      "3覆置本段内容 Http:/T￥6Sbtc4bvOFB￥da開绹..寶【拜托帮我点一下吧～你也可以领免费水果！】", // 李小号
+      "8.0复制文本 Http:/T￥NKNQc6JbDVh￥转移至τa0寳", // 李小号
     ],
   },
   {
@@ -48,7 +48,7 @@ const userList = [
     helping: [
       "3覆置本段内容 Http:/T￥6Sbtc4bvOFB￥da開绹..寶【拜托帮我点一下吧～你也可以领免费水果！】", // 李强强
       "-9fu致本段内容 Http:/T￥hqDxcVuQgVD￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", // 程
-      "3覆置本段内容 Http:/T￥6Sbtc4bvOFB￥da開绹..寶【拜托帮我点一下吧～你也可以领免费水果！】", // 李强强小号
+      "4.0付致文本 Http:/T￥s9WCchl2o2m￥到τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", // 李强强小号
     ],
   },
   {
@@ -57,6 +57,7 @@ const userList = [
     helping: [
       "7.0幅治内容 Http:/T￥fOdWcfJQM0E￥da開τao寶【拜托帮我点一下吧～你也可以领免费水果！】",
       "8fu致本段内容 Http:/T￥QflscfJn8Zc￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】",
+      "0.0fu置文本 Http:/T￥N632chotXFg￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", // 志豪
     ],
   },
 ];
@@ -78,23 +79,6 @@ helpingHand();
 
 sleep(2000);
 
-// 判断是否在第一棵数
-className("android.view.View")
-  .depth(19)
-  .untilFind()
-  .forEach((item) => {
-    const img = item.findOne(
-      className("android.widget.Image")
-        .depth(20)
-        .text("TB1X9ITzND1gK0jSZFsXXbldVXa-52-52.png_1080x1800Q50s50.jpg_")
-    );
-    const text = item.findOne(className("android.view.View").depth(20).text("2/3"));
-    if (img !== null && text !== null) {
-      img.click();
-    }
-  });
-
-sleep(1000);
 // 任务
 browseTask();
 
@@ -105,39 +89,40 @@ function handlezfbTask() {
   if (className("android.widget.Button").text("去逛逛").exists()) {
     className("android.widget.Button").text("去逛逛").click();
     log("进去支付宝");
-    sleep(10000);
-  }
+    className("android.view.View").text("继续赚肥料").waitFor();
+    className("android.view.View").text("继续赚肥料").findOne().click();
+    sleep(1000);
 
-  className("android.view.View").text("继续赚肥料").waitFor();
-  className("android.view.View").text("继续赚肥料").findOne().click();
-  sleep(1000);
-
-  log("去签到", exists());
-  if (className("android.view.View").text("去签到").exists()) {
-    className("android.view.View").text("去签到").click();
+    log("去签到", exists());
+    if (className("android.view.View").text("去签到").exists()) {
+      className("android.view.View").text("去签到").click();
+    } else {
+      log("签到完成!");
+    }
+    log("领取奖励");
+    while (className("android.view.View").text("领取").exists()) {
+      className("android.view.View").text("领取").click();
+      sleep(2000);
+    }
+    sleep(1000);
+    log("去淘宝逛逛");
+    if (className("android.view.View").text("去逛逛").exists()) {
+      className("android.view.View").text("去逛逛").findOne().click();
+    }
+    sleep(5000);
+    className("android.view.View").text("继续赚肥料").waitFor();
+    className("android.view.View").text("继续赚肥料").findOne().click();
+    sleep(1000);
   } else {
-    log("签到完成!");
+    log("支付宝任务已完成");
   }
-  log("领取奖励");
-  while (className("android.view.View").text("领取").exists()) {
-    className("android.view.View").text("领取").click();
-    sleep(2000);
-  }
-  sleep(1000);
-  log("去淘宝逛逛");
-  if (className("android.view.View").text("去逛逛").exists()) {
-    className("android.view.View").text("去逛逛").findOne().click();
-  }
-  sleep(5000);
-  className("android.view.View").text("继续赚肥料").waitFor();
-  className("android.view.View").text("继续赚肥料").findOne().click();
-  sleep(1000);
 }
 
 function browseTask() {
+  sleep(1000);
   // 点击集肥料
   className("android.widget.Image")
-    .depth(20)
+    .depth(16)
     .untilFind()
     .forEach((element) => {
       if (element.indexInParent() == 6 || element.indexInParent() == 5) {
@@ -146,7 +131,7 @@ function browseTask() {
       }
     });
 
-  sleep(2000);
+  sleep(1000);
 
   // 点击签到
   if (className("android.widget.Button").text("去签到").exists()) {
@@ -164,6 +149,7 @@ function browseTask() {
   }
 
   sleep(1000);
+
   for (let index = 1; index < 4; index++) {
     task("逛精选商品(" + (index - 1) + "/3)浏览15秒得1000肥料", "去完成");
     sleep(1000);
@@ -221,26 +207,30 @@ function helpingHand() {
     home();
     sleep(1000);
     launchApp("手机淘宝");
-    sleep(8000);
 
-    if (desc("查看详情").exists()) {
-      const detailsBtn = desc("查看详情").findOne();
-      const detailsBtnX = detailsBtn.bounds().centerX();
-      const detailsBtnY = detailsBtn.bounds().centerY();
-      click(detailsBtnX, detailsBtnY);
-    }
+    while (true) {
+      if (desc("查看详情").exists()) {
+        const detailsBtn = desc("查看详情").findOne();
+        const detailsBtnX = detailsBtn.bounds().centerX();
+        const detailsBtnY = detailsBtn.bounds().centerY();
+        click(detailsBtnX, detailsBtnY);
+        break;
+      }
 
-    if (className("android.widget.TextView").text("打开").exists()) {
-      className("android.widget.TextView").text("打开").waitFor();
-      className("android.widget.TextView").text("打开").findOne().click();
+      if (className("android.widget.TextView").text("打开").exists()) {
+        className("android.widget.TextView").text("打开").waitFor();
+        className("android.widget.TextView").text("打开").findOne().click();
+        break;
+      }
+      sleep(1000);
     }
 
     className("android.view.View").text("为TA助力").waitFor();
     className("android.view.View").text("为TA助力").findOne().click();
     className("android.view.View").text("去种果树").waitFor();
-    sleep(1500);
+
     if (className("android.view.View").text("今日助力好友次数已满，明天再来").exists()) {
-      sleep(1000);
+      sleep(500);
       className("android.view.View").text("去种果树").findOne().click();
       log("助力已上限");
       break;
@@ -248,9 +238,9 @@ function helpingHand() {
       className("android.view.View").text("去种果树").click();
     }
     num = num + 1;
-    sleep(2000);
+    sleep(1000);
   }
 
-  sleep(1500);
+  sleep(1000);
   log("助力任务完成");
 }

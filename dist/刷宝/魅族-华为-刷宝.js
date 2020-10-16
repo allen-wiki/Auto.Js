@@ -3,7 +3,7 @@
  * @Author: Allen
  * @Date: 2020-09-14 09:04:54
  * @LastEditors: Allen
- * @LastEditTime: 2020-09-24 11:44:05
+ * @LastEditTime: 2020-10-16 11:45:41
  */
 
 console.show();
@@ -21,7 +21,7 @@ for (let index = 1; index < 15; index++) {
 
 log(timeList);
 
-const see_count = 2000;
+const see_count = 4000;
 log("开始运行脚本");
 log("准备打开刷宝短视频");
 launchApp("刷宝短视频");
@@ -39,11 +39,13 @@ function handleTask() {
   log("进入任务页面");
   sleep(2000);
   // 判断是否存在去邀请好友弹框;
-  log(className("android.widget.ImageView").id("imgClose").exists());
+  log("是否存在去邀请好友弹框", className("android.widget.ImageView").id("imgClose").exists());
+
   if (className("android.widget.ImageView").id("imgClose").exists()) {
     className("android.widget.ImageView").id("imgClose").findOne().click();
   }
-  sleep(1000);
+
+  sleep(2000);
   textContains("继续赚元宝").waitFor();
 
   // 获取已观看次数
@@ -68,33 +70,37 @@ function handleTask() {
 
 function handleStart() {
   for (var i = 1; i < see_count; i++) {
-    log(dateArr[count], currentActivity());
-    if (i > 5 && currentActivity() !== "com.jm.video.ui.main.MainActivity") {
-      log("刷宝短视频未打开");
-      launchApp("刷宝短视频");
-      textContains("首页").waitFor();
-      randomUpSildeScreen();
-      randomDownSildeScreen();
-      slideScreenDown(width / 2, height / 2 + 300, width / 2, 0, 700);
-    } else if (Format(new Date(), "hh:mm") == dateArr[count]) {
-      log("进行第" + count + "次任务");
+    log(dateArr[count], timeList[timeCount]);
+    if (Format(new Date(), "hh:mm") == dateArr[count]) {
+      log("进行去观看第" + count + "次任务");
       handleTaskVideo();
     } else if (Format(new Date(), "hh:mm") == timeList[timeCount]) {
+      log();
+      log("进行领宝箱任务", timeList[timeCount]);
       sleep(1000);
       click("任务");
-      log("点击任务");
+      log("点击任务1");
       textContains("继续赚元宝").waitFor();
+      log("开箱领元宝", textContains("开箱领元宝").exists());
       // 判断是否可以开箱领元宝
       if (textContains("开箱领元宝").exists()) {
         log("存在开箱领元宝任务");
         textContains("开箱领元宝").findOne().parent().click();
         log("进行开箱领元宝任务");
-        // 不执行
         sleep(1000);
-        const clickStatus = click("额外领取188元宝");
-        if (!clickStatus) {
-          click("额外领取88元宝");
-        }
+
+        /**
+         * 测试是否生效
+         */
+        textContains("额外领取").findOne().click();
+
+        // const clickStatus = click("额外领取188元宝");
+        // if (!clickStatus) {
+        //   click("额外领取88元宝");
+        // }
+
+        log("点击了额外领取");
+
         id("tt_video_ad_close_layout").waitFor();
         id("tt_video_ad_close_layout").findOne().click();
         log("完成开箱领元宝");
@@ -110,21 +116,20 @@ function handleStart() {
               }
             }
           });
-
-        sleep(1000);
-        click("首页");
       }
+
+      timeCount = timeCount + 1;
+      sleep(800);
+      click("首页");
+    } else if (!id("layProgress").exists()) {
+      log("刷宝短视频未打开");
+      launchApp("刷宝短视频");
+      textContains("首页").waitFor();
+      toast("滑动" + i + "次" + "总计:" + see_count + "次");
+      slideScreenDown();
     } else {
-      log("滑动" + i + "次" + "总计:" + see_count + "次");
-      randomUpSildeScreen();
-      randomDownSildeScreen();
-      slideScreenDown(width / 2, height / 2 + 300, width / 2, 0, 700);
-
-      // 判断是否是直播
-      log("其他状态", className("android.widget.TextView").id("comment").exists());
-      if (!className("android.widget.TextView").id("comment").exists()) {
-        slideScreenDown(width / 2, height / 2 + 300, width / 2, 0, 700);
-      }
+      toast("滑动" + i + "次" + "总计:" + see_count + "次");
+      slideScreenDown();
     }
   }
 }
@@ -132,10 +137,9 @@ function handleStart() {
 // 红包视频任务
 function layProgress() {
   const layProgress = id("layProgress").findOne();
-  log(layProgress.bounds().centerX(), layProgress.bounds().centerY());
-  sleep(1000);
-  const clickStatus = click(layProgress.bounds().centerX(), layProgress.bounds().centerY());
-  textContains("元宝流水").waitFor();
+  click(layProgress.bounds().centerX(), layProgress.bounds().centerY());
+  textContains("看视频领元宝").waitFor();
+  // sleep(3000);
   log("是否存在立即观看", textContains("立即观看").exists());
   if (textContains("立即观看").exists()) {
     while (textContains("立即观看").exists()) {
@@ -144,9 +148,10 @@ function layProgress() {
       id("tt_video_ad_close_layout").findOne().click();
       sleep(2000);
     }
-  } else {
-    log("看视频任务已完成");
   }
+
+  log("看视频任务已完成");
+
   back();
 }
 
@@ -157,37 +162,24 @@ function handleTaskVideo() {
     return;
   }
 
-  sleep(1000);
   click("任务");
   log("点击任务");
+  sleep(1000);
+  // 判断是否存在去邀请好友弹框;
+  log("是否存在去邀请好友弹框", className("android.widget.ImageView").id("imgClose").exists());
+
+  if (className("android.widget.ImageView").id("imgClose").exists()) {
+    className("android.widget.ImageView").id("imgClose").findOne().click();
+  }
   textContains("继续赚元宝").waitFor();
   log("去观看", textContains("去观看").exists());
   if (textContains("去观看").exists()) {
     log("点击去观看");
     textContains("去观看").findOne().click();
-    // 判断广告结束是否出现关闭按钮 768 455
+    // 判断广告结束是否出现关闭按钮
     id("tt_video_ad_close_layout").waitFor();
     id("tt_video_ad_close_layout").findOne().click();
-    log("观看结束");
-  }
-  sleep(1000);
-
-  // 判断是否可以开箱领元宝
-  if (textContains("开箱领元宝").exists()) {
-    log("存在开箱领元宝任务");
-    textContains("开箱领元宝").findOne().parent().click();
-    log("进行开箱领元宝任务");
-    // 不执行
-    sleep(3000);
-    const clickStatus = click("额外领取188元宝");
-    if (!clickStatus) {
-      click("额外领取88元宝");
-    }
-    id("tt_video_ad_close_layout").waitFor();
-    id("tt_video_ad_close_layout").findOne().click();
-    log("完成开箱领元宝");
     sleep(1000);
-
     className("android.view.View")
       .depth(7)
       .untilFind()
@@ -198,48 +190,47 @@ function handleTaskVideo() {
           }
         }
       });
+    log("观看结束");
+  } else {
+    log("去观看不存在哦~!");
   }
+
   count = count + 1;
-
-  sleep(1000);
   click("首页");
-}
-
-/**
- * 随机上滑（防止被判定是机器）上滑后停留时间至少是10S，造成假象表示是对内容感兴趣
- * 点赞和关注先不搞。
- */
-function randomUpSildeScreen() {
-  let randomIndex = random(1, 50);
-  if (randomIndex == 1) {
-    pressTime = random(200, 500);
-    swipe(width / 2, 500, width / 2, height - 200, 300);
-    delayTime = random(10000, 15000);
-    sleep(delayTime);
-  }
-}
-
-/**
- * 连续下滑对上一个无兴趣
- * 其实得和上滑做个排他，既然无兴趣不要在上滑
- */
-function randomDownSildeScreen() {
-  let randomIndex = random(1, 50);
-  if (randomIndex == 1) {
-    swipe(width / 2, height - 200, width / 2, 500, 300);
-    sleep(2000);
-    swipe(width / 2, height - 200, width / 2, 500, 300);
-    delayTime = random(8000, 10000);
-    sleep(delayTime);
-  }
 }
 
 /**
  * 屏幕向下滑动并延迟8至12秒
  */
-function slideScreenDown(startX, startY, endX, endY, pressTime) {
-  swipe(startX, startY, endX, endY, pressTime);
-  let delayTime = random(4000, 9000);
+function slideScreenDown() {
+  let randomIndex = random(1, 50);
+  let delayTime = random(9000, 12000);
+
+  if (randomIndex == 6) {
+    pressTime = random(200, 500);
+    swipe(width / 2, 200, width / 2, height - 200, 700);
+    sleep(200, 500);
+  }
+
+  if (randomIndex == 10) {
+    swipe(width / 2, height / 2 + 300, width / 2, 0, 700);
+    sleep(2000);
+    swipe(width / 2, height / 2 + 300, width / 2, 0, 700);
+    sleep(1000);
+
+    sleep(delayTime);
+  }
+  swipe(width / 2, height / 2 + 300, width / 2, 0, 700);
+
+  // 判断是否是直播
+  log("是否存在praise", id("praise").exists());
+  if (!id("praise").exists()) {
+    sleep(1000);
+    swipe(width / 2, height / 2 + 100, width / 2, 0, 800);
+    slideScreenDown();
+    log("下一个");
+  }
+
   sleep(delayTime); //模仿人类随机时间
 }
 

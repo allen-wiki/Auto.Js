@@ -3,7 +3,11 @@
  * @Author: Allen
  * @Date: 2020-09-14 09:04:54
  * @LastEditors: Allen
+<<<<<<< HEAD
  * @LastEditTime: 2020-10-13 10:55:01
+=======
+ * @LastEditTime: 2020-09-23 20:45:01
+>>>>>>> 225f575444ed0300789423101672eab8efeb2bc4
  */
 
 console.show();
@@ -68,16 +72,30 @@ function handleTask() {
 
 function handleStart() {
   for (var i = 1; i < see_count; i++) {
+<<<<<<< HEAD
     log(dateArr[count], timeList[timeCount]);
     if (!id("layProgress").exists()) {
       log("刷宝短视频未打开");
       launchApp("刷宝短视频");
       textContains("首页").waitFor();
       slideScreenDown();
+=======
+    log(dateArr[count], currentActivity());
+    if (i > 5 && currentActivity() !== "com.jm.video.ui.main.MainActivity") {
+      log("刷宝短视频未打开");
+      launchApp("刷宝短视频");
+      descContains("首页").waitFor();
+      log("滑动" + i + "次" + "总计:" + see_count + "次");
+      randomUpSildeScreen();
+      randomDownSildeScreen();
+      slideScreenDown(width / 2, height / 2 + 300, width / 2, 0, 700);
+
+>>>>>>> 225f575444ed0300789423101672eab8efeb2bc4
     } else if (Format(new Date(), "hh:mm") == dateArr[count]) {
       log("进行第" + count + "次任务");
       handleTaskVideo();
     } else if (Format(new Date(), "hh:mm") == timeList[timeCount]) {
+<<<<<<< HEAD
       sleep(1000);
       click("任务");
       log("点击任务");
@@ -117,6 +135,56 @@ function handleStart() {
       timeCount = timeCount + 1;
       sleep(800);
       click("首页");
+=======
+      log("timeList", Format(new Date(), "hh:mm") == timeList[timeCount]);
+      sleep(1000);
+      click("任务");
+      log("点击任务");
+      descContains("继续赚元宝").waitFor();
+
+      // 判断是否可以开箱领元宝
+      log(descContains("开箱领元宝").exists());
+      if (descContains("开箱领元宝").exists()) {
+        log("存在开箱领元宝任务");
+        log(descContains("开箱领元宝").findOne().parent());
+        log("进行开箱领元宝任务");
+        const ch2 = descContains("开箱领元宝").findOne();
+        const btnStatus = click(ch2.bounds().centerX(), ch2.bounds().centerY());
+        log("点击了开宝箱");
+        log(btnStatus);
+
+        // 不执行
+        sleep(1000);
+        log(descContains("额外领取188元宝").exists());
+        log(descContains("额外领取88元宝").exists());
+
+        if (!descContains("额外领取188元宝").exists()) {
+          descContains("额外领取88元宝").findOne().click();
+        } else {
+          descContains("额外领取188元宝").findOne().click();
+        }
+        // log("等待关闭广告");
+        id("tt_video_ad_close_layout").waitFor();
+        id("tt_video_ad_close_layout").findOne().click(); 
+        log("完成开箱领元宝");
+        sleep(1000);
+
+        log("关闭广告奖励弹框");
+        className("android.view.View")
+          .depth(14)
+          .untilFind()
+          .forEach((item) => {
+            if (item.indexInParent() == 74) {
+              if (item.clickable()) {
+                item.click();
+              }
+            }
+          });
+
+        sleep(1000);
+        click("首页");
+      }
+>>>>>>> 225f575444ed0300789423101672eab8efeb2bc4
     } else {
       log("滑动" + i + "次" + "总计:" + see_count + "次");
       slideScreenDown();
@@ -129,8 +197,13 @@ function layProgress() {
   const layProgress = id("layProgress").findOne();
   log(layProgress.bounds().centerX(), layProgress.bounds().centerY());
   sleep(1000);
+<<<<<<< HEAD
   const clickStatus = click(layProgress.bounds().centerX(), layProgress.bounds().centerY());
   descContains("看视频领元宝").waitFor();
+=======
+  click(layProgress.bounds().centerX(), layProgress.bounds().centerY());
+  descContains("元宝流水").waitFor();
+>>>>>>> 225f575444ed0300789423101672eab8efeb2bc4
   log("是否存在立即观看", descContains("立即观看").exists());
   if (descContains("立即观看").exists()) {
     while (descContains("立即观看").exists()) {
@@ -155,6 +228,7 @@ function handleTaskVideo() {
   sleep(1000);
   click("任务");
   log("点击任务");
+<<<<<<< HEAD
   sleep(1000);
   // 判断是否存在去邀请好友弹框;
   log(className("android.widget.ImageView").id("imgClose").exists());
@@ -162,6 +236,8 @@ function handleTaskVideo() {
     className("android.widget.ImageView").id("imgClose").findOne().click();
   }
 
+=======
+>>>>>>> 225f575444ed0300789423101672eab8efeb2bc4
   descContains("继续赚元宝").waitFor();
   log("去观看", descContains("去观看").exists());
   if (descContains("去观看").exists()) {
@@ -171,8 +247,20 @@ function handleTaskVideo() {
     id("tt_video_ad_close_layout").waitFor();
     id("tt_video_ad_close_layout").findOne().click();
     log("观看结束");
+
+    className("android.view.View")
+      .depth(4)
+      .untilFind()
+      .forEach((item) => {
+        if (item.indexInParent() == 80) {
+          if (item.clickable()) {
+            item.click();
+          }
+        }
+      });
   }
   sleep(1000);
+<<<<<<< HEAD
   className("android.view.View")
     .depth(4)
     .untilFind()
@@ -182,8 +270,9 @@ function handleTaskVideo() {
         log("关闭领取奖励弹框");
       }
     });
+=======
+>>>>>>> 225f575444ed0300789423101672eab8efeb2bc4
   count = count + 1;
-
   sleep(1000);
   click("首页");
   log("回首页");
@@ -216,6 +305,15 @@ function slideScreenDown() {
     log("下一个");
   }
 
+<<<<<<< HEAD
+=======
+/**
+ * 屏幕向下滑动并延迟8至12秒
+ */
+function slideScreenDown(startX, startY, endX, endY, pressTime) {
+  swipe(startX, startY, endX, endY, pressTime);
+  let delayTime = random(4000, 9000);
+>>>>>>> 225f575444ed0300789423101672eab8efeb2bc4
   sleep(delayTime); //模仿人类随机时间
 }
 

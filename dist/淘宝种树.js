@@ -9,14 +9,12 @@
 // 种树开始
 console.show();
 
-log("用户编号:", "0李强强", "1李强小号", "2付鹏飞", "3李若男");
 
 const height = device.height;
 const width = device.width;
 setScreenMetrics(width, height);
 
 // 当前用户
-// 0李强强 1李强强小号
 const userNumber = dialogs.input("请输入用户编号");
 
 log("当前用户编号", userNumber);
@@ -24,40 +22,36 @@ log("当前用户编号", userNumber);
 // 用户信息
 const userList = [
   {
-    // 李强强 0
     clip:
       "3覆置本段内容 Http:/T￥6Sbtc4bvOFB￥da開绹..寶【拜托帮我点一下吧～你也可以领免费水果！】",
     helping: [
-      "-9fu致本段内容 Http:/T￥hqDxcVuQgVD￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", // 程
-      "-2.0付致内容 Http:/T￥9n9GcVtP8Dk￥到τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", // 付
-      "0.0fu置文本 Http:/T￥N632chotXFg￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", // 李小号
+      "-9fu致本段内容 Http:/T￥hqDxcVuQgVD￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】",
+      "-2.0付致内容 Http:/T￥9n9GcVtP8Dk￥到τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", 
+      "0.0fu置文本 Http:/T￥N632chotXFg￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】",
     ],
   },
   {
-    // 李强强小号 1
     clip: "1fu置文本 Http:/T￥Di3cchoIAWr￥打開氵匋寳【拜托帮我点一下吧～你也可以领免费水果！】",
     helping: [
-      "-9fu致本段内容 Http:/T￥hqDxcVuQgVD￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", // 程
-      "-2.0付致内容 Http:/T￥9n9GcVtP8Dk￥到τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", // 付
+      "-9fu致本段内容 Http:/T￥hqDxcVuQgVD￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】",
+      "-2.0付致内容 Http:/T￥9n9GcVtP8Dk￥到τa0寳【拜托帮我点一下吧～你也可以领免费水果！】",
       "8.0复制文本 Http:/T￥NKNQc6JbDVh￥转移至τa0寳", // 李小号
     ],
   },
   {
-    // 付鹏飞 2
     clip: "-2.0付致内容 Http:/T￥9n9GcVtP8Dk￥到τa0寳【拜托帮我点一下吧～你也可以领免费水果！】",
     helping: [
-      "3覆置本段内容 Http:/T￥6Sbtc4bvOFB￥da開绹..寶【拜托帮我点一下吧～你也可以领免费水果！】", // 李强强
-      "-9fu致本段内容 Http:/T￥hqDxcVuQgVD￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", // 程
-      "4.0付致文本 Http:/T￥s9WCchl2o2m￥到τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", // 李强强小号
+      "3覆置本段内容 Http:/T￥6Sbtc4bvOFB￥da開绹..寶【拜托帮我点一下吧～你也可以领免费水果！】", 
+      "-9fu致本段内容 Http:/T￥hqDxcVuQgVD￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】"
+      "4.0付致文本 Http:/T￥s9WCchl2o2m￥到τa0寳【拜托帮我点一下吧～你也可以领免费水果！】",
     ],
   },
   {
-    // 李若男3
     clip: "-2.0付致内容 Http:/T￥9n9GcVtP8Dk￥到τa0寳【拜托帮我点一下吧～你也可以领免费水果！】",
     helping: [
       "7.0幅治内容 Http:/T￥fOdWcfJQM0E￥da開τao寶【拜托帮我点一下吧～你也可以领免费水果！】",
       "8fu致本段内容 Http:/T￥QflscfJn8Zc￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】",
-      "0.0fu置文本 Http:/T￥N632chotXFg￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", // 志豪
+      "0.0fu置文本 Http:/T￥N632chotXFg￥转移至τa0寳【拜托帮我点一下吧～你也可以领免费水果！】", 
     ],
   },
 ];

@@ -1,14 +1,9 @@
-<mxfile host="app.diagrams.net" modified="2021-04-15T09:05:58.985Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36" etag="Kx6VDrPHfoMqdNJL043A" version="14.6.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-04-15T09:10:19.451Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36" etag="FO-Z4hfYNbTKdvAAwjO2" version="14.6.0" type="github">
   <diagram name="Page-1" id="42789a77-a242-8287-6e28-9cd8cfd52e62">
     <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="1ea317790d2ca983-12" style="edgeStyle=none;rounded=1;html=1;labelBackgroundColor=none;startArrow=none;startFill=0;startSize=5;endArrow=classicThin;endFill=1;endSize=5;jettySize=auto;orthogonalLoop=1;strokeColor=#B3B3B3;strokeWidth=1;fontFamily=Verdana;fontSize=12" parent="1" source="1ea317790d2ca983-1" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="495" y="190" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="1ea317790d2ca983-13" value="添加入住人&amp;nbsp;" style="edgeStyle=none;rounded=1;html=1;labelBackgroundColor=none;startArrow=none;startFill=0;startSize=5;endArrow=classicThin;endFill=1;endSize=5;jettySize=auto;orthogonalLoop=1;strokeColor=#B3B3B3;strokeWidth=1;fontFamily=Verdana;fontSize=12" parent="1" source="1ea317790d2ca983-1" target="1ea317790d2ca983-9" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
@@ -103,8 +98,14 @@
         <mxCell id="yDMDq4RHHHaFF2rKGilQ-11" value="调用后台&lt;br&gt;保存(编辑)接口" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
           <mxGeometry x="365" y="730" width="75" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="yDMDq4RHHHaFF2rKGilQ-13" value="回响猪" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
-          <mxGeometry x="520" y="730" width="75" height="50" as="geometry" />
+        <mxCell id="yDMDq4RHHHaFF2rKGilQ-36" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="yDMDq4RHHHaFF2rKGilQ-13" target="yDMDq4RHHHaFF2rKGilQ-35">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yDMDq4RHHHaFF2rKGilQ-39" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="yDMDq4RHHHaFF2rKGilQ-13" target="yDMDq4RHHHaFF2rKGilQ-38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yDMDq4RHHHaFF2rKGilQ-13" value="回响猪,判断来源类型,告诉返回的页面如何进行操作" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="520" y="730" width="390" height="50" as="geometry" />
         </mxCell>
         <mxCell id="yDMDq4RHHHaFF2rKGilQ-15" value="提示失败" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
           <mxGeometry x="365" y="600" width="75" height="50" as="geometry" />
@@ -148,6 +149,15 @@
         </mxCell>
         <mxCell id="yDMDq4RHHHaFF2rKGilQ-33" value="调用保存&lt;br&gt;办理入住接口" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
           <mxGeometry x="855" y="640" width="75" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="yDMDq4RHHHaFF2rKGilQ-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="yDMDq4RHHHaFF2rKGilQ-35" target="yDMDq4RHHHaFF2rKGilQ-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yDMDq4RHHHaFF2rKGilQ-35" value="回到办理入住&lt;br&gt;首页页面,&lt;br&gt;刷新数据" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="625" y="920" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="yDMDq4RHHHaFF2rKGilQ-38" value="回到添加入住人页面.&lt;br&gt;提示添加(编辑)成功" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="710" width="160" height="90" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
